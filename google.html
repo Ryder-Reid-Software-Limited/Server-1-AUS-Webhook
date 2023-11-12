@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Simple Website</title>
+  <style>
+    /* Basic CSS styles for your website */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #444;
+      padding: 10px 0;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Website</h1>
+  </header>
+  
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <button id="google-sign-in-button">Login with Google</button>
+  </nav>
+  
+  <div class="container">
+    <h2>Welcome to My Website</h2>
+    <p>This is a simple website created using HTML and CSS.</p>
+  </div>
+  
+  <!-- Firebase initialization with your config -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const firebaseConfig = {
+        apiKey: "AIzaSyDBZ2M-Fi4rd_Id5p1CQUuld0nDfPU79sU",
+        authDomain: "alkali-systems.firebaseapp.com",
+        databaseURL: "https://alkali-systems-default-rtdb.firebaseio.com/",
+        projectId: "alkali-systems",
+        storageBucket: "alkali-systems.appspot.com",
+        messagingSenderId: "93698703749",
+        appId: "1:93698703749:web:0d32fd3364c5e9d1e184ec",
+        measurementId: "G-3MK73RHMTR",
+      };
+  
+      firebase.initializeApp(firebaseConfig);
+      
+      const googleSignInButton = document.getElementById('google-sign-in-button');
+    
+      googleSignInButton.addEventListener('click', () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider)
+          .then((result) => {
+            console.log("Logged in with Google: ", result.user);
+          })
+          .catch((error) => {
+            console.error("Google Sign-In Error: ", error);
+          });
+      });
+    });
+  </script>
+  
+</body>
+</html>
